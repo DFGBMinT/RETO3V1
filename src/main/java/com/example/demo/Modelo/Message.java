@@ -27,7 +27,7 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     private Integer idMessage;
-    private String messagetext;
+    private String messageText;
 
     @ManyToOne
     @JoinColumn(name="carId")
@@ -47,12 +47,12 @@ public class Message {
         this.idMessage = idMessage;
     }
 
-    public String getMessagetext() {
-        return messagetext;
+    public String getMessageText() {
+        return messageText;
     }
 
-    public void setMessagetext(String messagetext) {
-        this.messagetext = messagetext;
+    public void setMessageText(String messagetext) {
+        this.messageText = messagetext;
     }
 
     public Car getCar() {
