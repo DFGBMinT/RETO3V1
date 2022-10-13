@@ -5,11 +5,14 @@
 package com.example.demo.Controlador;
 
 import com.example.demo.Modelo.Reservation;
+import com.example.demo.Repositorio.CountClient;
 import com.example.demo.Servicio.ReservationServicio;
+import com.example.demo.Servicio.Status;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +30,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/Reservation")
+@CrossOrigin(origins = "*")
+
 
 public class ReservationControlador {
         @Autowired
@@ -59,5 +64,15 @@ public class ReservationControlador {
         return reservationService.deleteReservation(reservationId);
     }
     
+    
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
+        return reservationService.informePeriodoTiempoReservas(dateOne,dateTwo);
+    }
+    
+    @GetMapping("/report-status")
+    public Status getReservationsStatusReport(){
+        return reservationService.getReservationStatusReport();
+    }
 }
 
