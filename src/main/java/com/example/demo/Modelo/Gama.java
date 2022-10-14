@@ -16,20 +16,20 @@ import javax.persistence.Table;
 
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
 @Entity
 @Table(name = "gama")
 
 public class Gama {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     private Integer idGama;
     private String name;
     private String description;
-
-    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "gama")
+    
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="gama")
     @JsonIgnoreProperties("gama")
     private List<Car> cars;
 
@@ -63,6 +63,6 @@ public class Gama {
 
     public void setCars(List<Car> cars) {
         this.cars = cars;
-    }
+    }   
     
 }

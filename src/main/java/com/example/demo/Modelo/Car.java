@@ -3,49 +3,38 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.example.demo.Modelo;
-
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
-
 @Entity
 @Table(name = "car")
-
-public class Car {
-    
-    @Id
+public class Car  {
+     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     private Integer idCar;
-    private String  name;
-    private String  brand;
+    private String name;
+    private String brand;
     private Integer year;
-    private String  description;
-    
+    private String description;
+
     @ManyToOne
-    @JoinColumn (name = "gamaId")
+    @JoinColumn(name = "gamaId")
     @JsonIgnoreProperties("cars")
     private Gama gama;
-    
-    
+
+
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "car")
     @JsonIgnoreProperties({"car","client"})
-    private List <Message> messages;
-    
-    
+    private List<Message> messages;
+
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "car")
     @JsonIgnoreProperties({"car","messages"})
     public List<Reservation> reservations;

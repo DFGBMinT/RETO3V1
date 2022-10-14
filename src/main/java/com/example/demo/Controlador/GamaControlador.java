@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
 @RestController
 @RequestMapping("/api/Gama")
@@ -59,5 +59,4 @@ public class GamaControlador {
     public boolean delete(@PathVariable("id") int gamaId){
         return gamaService.deleteGama(gamaId);
     }
-    
 }

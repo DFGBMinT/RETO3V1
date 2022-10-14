@@ -13,16 +13,15 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
-
 @Service
 
 public class CarServicio {
-        @Autowired
+      @Autowired
     private CarRepositorio carRepository;
 
-    public List<Car> getAll() {
+    public List<Car> getAll(){
         return carRepository.getAll();
     }
 
@@ -30,19 +29,20 @@ public class CarServicio {
         return carRepository.getCar(carId);
     }
 
-    public Car save(Car car) {
-        if (car.getIdCar() == null) {
+    public Car save(Car car){
+        if(car.getIdCar()==null){
             return carRepository.save(car);
-        } else {
-            Optional<Car> e = carRepository.getCar(car.getIdCar());
-            if (e.isEmpty()) {
+        }else{
+            Optional<Car> e=carRepository.getCar(car.getIdCar());
+            if(e.isEmpty()){
                 return carRepository.save(car);
-            } else {
+            }else{
                 return car;
             }
         }
     } 
-    public Car update(Car car){
+    
+      public Car update(Car car){
         if(car.getIdCar()!=null){
             Optional<Car> e=carRepository.getCar(car.getIdCar());
             if(!e.isEmpty()){
@@ -71,10 +71,10 @@ public class CarServicio {
         }
     }
     
-    public boolean deleteCar (int carId){
-        Boolean d=getCar(carId).map(car ->{
+    public boolean deleteCar(int carId){
+        Boolean d=getCar(carId).map(car -> {
             carRepository.delete(car);
-            return true;                   
+            return true;
         }).orElse(false);
         return d;
     }

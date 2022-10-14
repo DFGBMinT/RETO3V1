@@ -13,30 +13,27 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
-
 @Repository
-
 
 public class GamaRepositorio {
     @Autowired
     private GamaInterface gamaCrudRepository;
     
-    public List <Gama> getAll(){
+    public List<Gama> getAll(){
         return (List<Gama>) gamaCrudRepository.findAll();
     }
-    
-    public Optional<Gama> getGama(int id){
+     public Optional<Gama> getGama(int id){
         return gamaCrudRepository.findById(id);
     }
-    
-     public Gama save(Gama gama){
+
+    public Gama save(Gama gama){
         return gamaCrudRepository.save(gama);
     }
-         
+    
     public void delete (Gama gama){
         gamaCrudRepository.delete(gama);
-    }
+    }   
     
 }

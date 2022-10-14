@@ -9,8 +9,8 @@ import org.springframework.data.repository.CrudRepository;
 
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
-public interface MessageInterface extends CrudRepository <Message, Integer>{
+public interface MessageInterface extends CrudRepository <Message, Integer> {
     
 }

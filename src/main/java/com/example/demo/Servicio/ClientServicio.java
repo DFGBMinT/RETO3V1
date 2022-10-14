@@ -13,15 +13,15 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
-
 @Service
+
 public class ClientServicio {
         @Autowired
     private ClientRepositorio clientRepository;
 
-    public List<Client> getAll() {
+    public List<Client> getAll(){
         return clientRepository.getAll();
     }
 
@@ -29,20 +29,20 @@ public class ClientServicio {
         return clientRepository.getClient(clientId);
     }
 
-    public Client save(Client client) {
-        if (client.getIdClient() == null) {
+    public Client save(Client client){
+        if(client.getIdClient()==null){
             return clientRepository.save(client);
-        } else {
-            Optional<Client> e = clientRepository.getClient(client.getIdClient());
-            if (e.isEmpty()) {
+        }else{
+            Optional<Client> e= clientRepository.getClient(client.getIdClient());
+            if(e.isEmpty()){
                 return clientRepository.save(client);
-            } else {
+            }else{
                 return client;
             }
         }
-    } 
-
-    public Client update(Client client){
+    }
+    
+        public Client update(Client client){
         if(client.getIdClient()!=null){
             Optional<Client> e= clientRepository.getClient(client.getIdClient());
             if(!e.isEmpty()){
@@ -65,12 +65,11 @@ public class ClientServicio {
         }
     }
     
-    public boolean deleteClient (int clientId){
-        Boolean d=getClient(clientId).map(client ->{
+        public boolean deleteClient(int clientId){
+        Boolean d=getClient(clientId).map(client -> {
             clientRepository.delete(client);
-            return true;                   
+            return true;
         }).orElse(false);
         return d;
     }
 }
-

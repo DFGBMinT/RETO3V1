@@ -17,10 +17,9 @@ import org.springframework.stereotype.Service;
  * @author USUARIO
  */
 @Service
-
 public class GamaServicio {
-        @Autowired
-    private GamaRepositorio gamaRepository;
+    @Autowired
+     private GamaRepositorio gamaRepository;
 
     public List<Gama> getAll() {
         return gamaRepository.getAll();
@@ -42,7 +41,7 @@ public class GamaServicio {
             }
         }
     }
-
+    
     public Gama update(Gama gama){
         if(gama.getIdGama()!=null){
             Optional<Gama>g=gamaRepository.getGama(gama.getIdGama());
@@ -58,11 +57,15 @@ public class GamaServicio {
         }
         return gama;
     }
-    public boolean deleteGama (int gamaId){
-        Boolean d=getGama(gamaId).map(gama ->{
+    
+    
+    public boolean deleteGama(int gamaId){
+        Boolean d=getGama(gamaId).map(gama -> {
             gamaRepository.delete(gama);
-            return true;                   
+            return true;
         }).orElse(false);
         return d;
     }
+    
+    
 }

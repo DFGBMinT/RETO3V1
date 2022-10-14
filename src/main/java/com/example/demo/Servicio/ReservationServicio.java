@@ -18,16 +18,14 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
-
 @Service
-
 public class ReservationServicio {
-        @Autowired
-        private ReservationRepositorio reservationRepository;
+     @Autowired
+    private ReservationRepositorio reservationRepository;
 
-    public List<Reservation> getAll() {
+    public List<Reservation> getAll(){
         return reservationRepository.getAll();
     }
 
@@ -35,14 +33,14 @@ public class ReservationServicio {
         return reservationRepository.getReservation(reservationId);
     }
 
-    public Reservation save(Reservation reservation) {
-        if (reservation.getIdReservation() == null) {
+    public Reservation save(Reservation reservation){
+        if(reservation.getIdReservation()==null){
             return reservationRepository.save(reservation);
-        } else {
-            Optional<Reservation> e = reservationRepository.getReservation(reservation.getIdReservation());
-            if (e.isEmpty()) {
+        }else{
+            Optional<Reservation> e= reservationRepository.getReservation(reservation.getIdReservation());
+            if(e.isEmpty()){
                 return reservationRepository.save(reservation);
-            } else {
+            }else{
                 return reservation;
             }
         }
@@ -72,14 +70,17 @@ public class ReservationServicio {
         }
     }
     
-    public boolean deleteReservation (int reservationId){
-        Boolean d=getReservation(reservationId).map(reservation ->{
+    public boolean deleteReservation(int reservationId){
+        Boolean d=getReservation(reservationId).map(reservation -> {
             reservationRepository.delete(reservation);
-            return true;                   
+            return true;
         }).orElse(false);
         return d;
     }
-
+    
+    
+    ////////////////Reto 5 Reportes////////////////////////////////
+    
     public Status getReservationStatusReport(){
         List<Reservation>completed=reservationRepository.getReservationByStatus("completed");
         List<Reservation>cancelled=reservationRepository.getReservationByStatus("cancelled");
@@ -87,7 +88,7 @@ public class ReservationServicio {
     }
     
     public List<Reservation> informePeriodoTiempoReservas(String dataA, String dataB){
-        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM--dd");
+        SimpleDateFormat parser =new SimpleDateFormat("yyyy-MM-dd");
         Date a = new Date();
         Date b = new Date();
         
@@ -97,15 +98,15 @@ public class ReservationServicio {
         } catch (ParseException e){
             e.printStackTrace();
         }
-        if (a.before(b)){
+        if(a.before(b)){
             return reservationRepository.informePeriodoTiempoReservas(a, b);
-            
         }else{
         return new ArrayList<>();
         }
     }
+    
     public List<CountClient> getTopClients(){
         return reservationRepository.getTopClient();
     }
-
+    
 }

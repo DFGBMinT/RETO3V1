@@ -16,32 +16,29 @@ import javax.persistence.Table;
 
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
-
 @Entity
-@Table(name = "Reservation")
+@Table(name = "reservation")
 
 public class Reservation {
-    
-    @Id
+     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     private Integer idReservation;
-    private Date  startDate;
-    private Date  devolutionDate;
-    private String  status = "created";
-    
+    private Date startDate;
+    private Date devolutionDate;
+    private String status="created";
+
     @ManyToOne
-    @JoinColumn(name="carId")
-    @JsonIgnoreProperties({"reservations"})
+    @JoinColumn(name = "carId")
+    @JsonIgnoreProperties("reservations")
     private Car car;
-    
+
     @ManyToOne
-    @JoinColumn(name="clientId")
-    @JsonIgnoreProperties({"reservations","reservations"})
+    @JoinColumn(name = "clientId")
+    @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
-    
+
     private String score;
 
     public Integer getIdReservation() {
@@ -99,5 +96,8 @@ public class Reservation {
     public void setScore(String score) {
         this.score = score;
     }
-
+    
+    
+    
+    
 }

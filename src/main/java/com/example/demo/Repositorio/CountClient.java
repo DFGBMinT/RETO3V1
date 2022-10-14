@@ -8,7 +8,7 @@ import com.example.demo.Modelo.Client;
 
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
 public class CountClient {
     
@@ -18,7 +18,6 @@ public class CountClient {
     public CountClient(Long total, Client client){
         this.total = total;
         this.client = client;
-        
     }
 
     public Long getTotal() {
@@ -36,7 +35,5 @@ public class CountClient {
     public void setClient(Client client) {
         this.client = client;
     }
-    
-    
-    
+     
 }

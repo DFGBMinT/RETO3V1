@@ -9,8 +9,8 @@ import org.springframework.data.repository.CrudRepository;
 
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
-public interface CarInterface extends CrudRepository <Car, Integer>{
+public interface CarInterface extends CrudRepository <Car, Integer> {
     
 }

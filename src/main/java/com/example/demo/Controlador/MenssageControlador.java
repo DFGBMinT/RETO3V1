@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,16 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
-
 @RestController
 @RequestMapping("/api/Message")
-@CrossOrigin(origins = "*")
 
-public class MessageControlador {
-    
-      @Autowired
+public class MenssageControlador {
+     @Autowired
     private MessageServicio messageService;
     @GetMapping("/all")
     public List<Message> getMessages(){
@@ -56,10 +52,10 @@ public class MessageControlador {
         return messageService.update(message);
     }
     
+    
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int messageId){
         return messageService.deleteMessage(messageId);
     }
-
 }

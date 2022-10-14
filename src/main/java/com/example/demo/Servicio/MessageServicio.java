@@ -13,16 +13,14 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
-
 @Service
-
 public class MessageServicio {
-        @Autowired
+     @Autowired
     private MessageRepositorio messageRepository;
 
-    public List<Message> getAll() {
+    public List<Message> getAll(){
         return messageRepository.getAll();
     }
 
@@ -30,20 +28,19 @@ public class MessageServicio {
         return messageRepository.getMessage(messageId);
     }
 
-    public Message save(Message message) {
-        if (message.getIdMessage() == null) {
+    public Message save(Message message){
+        if(message.getIdMessage()==null){
             return messageRepository.save(message);
-        } else {
-            Optional<Message> e = messageRepository.getMessage(message.getIdMessage());
-            if (e.isEmpty()) {
+        }else{
+            Optional<Message> e= messageRepository.getMessage(message.getIdMessage());
+            if(e.isEmpty()){
                 return messageRepository.save(message);
-            } else {
+            }else{
                 return message;
             }
         }
     }
-    
-    public Message update(Message message){
+       public Message update(Message message){
         if(message.getIdMessage()!=null){
             Optional<Message> e= messageRepository.getMessage(message.getIdMessage());
             if(!e.isEmpty()){
@@ -60,10 +57,11 @@ public class MessageServicio {
         }
     }
     
-    public boolean deleteMessage (int messageId){
-        Boolean d=getMessage(messageId).map(message ->{
+    
+    public boolean deleteMessage(int messageId){
+        Boolean d=getMessage(messageId).map(message -> {
             messageRepository.delete(message);
-            return true;                   
+            return true;
         }).orElse(false);
         return d;
     }

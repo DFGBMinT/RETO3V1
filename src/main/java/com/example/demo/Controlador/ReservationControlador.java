@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,16 +24,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
-
 @RestController
 @RequestMapping("/api/Reservation")
-@CrossOrigin(origins = "*")
-
 
 public class ReservationControlador {
-        @Autowired
+      @Autowired
     private ReservationServicio reservationService;
     @GetMapping("/all")
     public List<Reservation> getReservations(){
@@ -45,7 +41,6 @@ public class ReservationControlador {
     public Optional<Reservation> getReservation(@PathVariable("id") int reservationId) {
         return reservationService.getReservation(reservationId);
     }
-
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation save(@RequestBody Reservation reservation) {
@@ -58,21 +53,27 @@ public class ReservationControlador {
         return reservationService.update(reservation);
     }
     
-    @DeleteMapping("/{id}")
+     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int reservationId){
         return reservationService.deleteReservation(reservationId);
     }
     
+    //////////////////////Reto 5///////////////////////////////////
+    
+    
+    @GetMapping("/report-clients")
+    public List<CountClient> getReservationsReportClient(){
+        return reservationService.getTopClients();
+    }
     
     @GetMapping("/report-dates/{dateOne}/{dateTwo}")
     public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
         return reservationService.informePeriodoTiempoReservas(dateOne,dateTwo);
     }
     
-    @GetMapping("/report-status")
+     @GetMapping("/report-status")
     public Status getReservationsStatusReport(){
         return reservationService.getReservationStatusReport();
     }
 }
-

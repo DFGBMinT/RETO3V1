@@ -15,25 +15,21 @@ import javax.persistence.Table;
 
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
-
 @Entity
 @Table(name = "message")
-
 public class Message {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     private Integer idMessage;
     private String messageText;
 
-    @ManyToOne
+   @ManyToOne
     @JoinColumn(name="carId")
     @JsonIgnoreProperties({"messages","reservations"})
     private Car car;
-    
+
     @ManyToOne
     @JoinColumn(name="clientId")
     @JsonIgnoreProperties({"messages","reservations"})
@@ -51,8 +47,8 @@ public class Message {
         return messageText;
     }
 
-    public void setMessageText(String messagetext) {
-        this.messageText = messagetext;
+    public void setMessageText(String messageText) {
+        this.messageText = messageText;
     }
 
     public Car getCar() {
@@ -70,6 +66,7 @@ public class Message {
     public void setClient(Client client) {
         this.client = client;
     }
+    
     
     
 }

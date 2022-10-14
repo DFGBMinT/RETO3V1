@@ -13,28 +13,26 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
-
 @Repository
 
 public class CarRepositorio {
     @Autowired
     private CarInterface carCrudRepository;
     
-    public List <Car> getAll(){
+      public List<Car> getAll(){
         return (List<Car>) carCrudRepository.findAll();
     }
-    
-    public Optional<Car> getCar(int id){
+     public Optional<Car> getCar(int id){
         return carCrudRepository.findById(id);
     }
-    
-     public Car save(Car car){
+
+    public Car save(Car car){
         return carCrudRepository.save(car);
     }
-    public void delete(Car car){
-        carCrudRepository.delete(car);
-    }
      
+    public void delete (Car car){
+        carCrudRepository.delete(car);
+    }   
 }

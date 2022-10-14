@@ -6,9 +6,10 @@ package com.example.demo.Servicio;
 
 /**
  *
- * @author elpro
+ * @author USUARIO
  */
 public class Status {
+    
     private int completed;
     private int cancelled;
 
@@ -32,5 +33,6 @@ public class Status {
     public void setCancelled(int cancelled) {
         this.cancelled = cancelled;
     }
+    
     
 }
